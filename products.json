@@ -1,0 +1,42 @@
+[
+  {
+    "id": "p-1",
+    "name": "Chicken Wings (Spicy)",
+    "description": "Crispy spicy wings with house sauce",
+    "category": "Food",
+    "price": 45.0,
+    "quantity": 30
+  },
+  {
+    "id": "p-2",
+    "name": "Veggie Burger",
+    "description": "Grilled veggie patty with lettuce",
+    "category": "Food",
+    "price": 35.0,
+    "quantity": 12
+  },
+  {
+    "id": "p-3",
+    "name": "Iced Coffee",
+    "description": "Cold brew iced coffee",
+    "category": "Beverage",
+    "price": 18.5,
+    "quantity": 50
+  },
+  {
+    "id": "p-4",
+    "name": "Chocolate Cake Slice",
+    "description": "Rich chocolate cake",
+    "category": "Dessert",
+    "price": 25.0,
+    "quantity": 8
+  },
+  {
+    "id": "p-5",
+    "name": "Orange Juice",
+    "description": "Freshly squeezed",
+    "category": "Beverage",
+    "price": 15.0,
+    "quantity": 20
+  }
+]

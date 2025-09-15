@@ -1,0 +1,26 @@
+[
+  {
+    "id": "s-1",
+    "productId": "p-1",
+    "qty": 3,
+    "price": 45,
+    "revenue": 135,
+    "date": "2025-08-20T10:12:00Z"
+  },
+  {
+    "id": "s-2",
+    "productId": "p-3",
+    "qty": 5,
+    "price": 18.5,
+    "revenue": 92.5,
+    "date": "2025-08-21T12:00:00Z"
+  },
+  {
+    "id": "s-3",
+    "productId": "p-4",
+    "qty": 2,
+    "price": 25,
+    "revenue": 50,
+    "date": "2025-08-22T15:30:00Z"
+  }
+]

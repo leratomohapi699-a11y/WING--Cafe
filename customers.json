@@ -1,0 +1,14 @@
+[
+  {
+    "id": "c-1",
+    "name": "Lerato Moalosi",
+    "contact": "+26658200001",
+    "email": "lerato@example.com"
+  },
+  {
+    "id": "c-2",
+    "name": "Nthabiseng",
+    "contact": "+26658200002",
+    "email": "nthabi@example.com"
+  }
+]
