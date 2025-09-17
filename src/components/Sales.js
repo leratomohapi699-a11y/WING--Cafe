@@ -1,5 +1,102 @@
-import React, {useEffect, useState} from 'react';import Swal from 'sweetalert2';
-export default function Sales(){ const [products,setProducts]=useState([]); const [sales,setSales]=useState([]); const [form,setForm]=useState({productId:'',qty:1,customerId:''});
-  useEffect(()=>{ fetch('/api/products').then(r=>r.json()).then(setProducts); fetch('/api/sales').then(r=>r.json()).then(setSales); },[]);
-  async function record(e){ e.preventDefault(); const res = await fetch('/api/sales',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(form)}); const data = await res.json(); if(data.error){ Swal.fire('Error',data.error,'error'); } else { Swal.fire('Recorded','Sale saved','success'); fetch('/api/sales').then(r=>r.json()).then(setSales); fetch('/api/products').then(r=>r.json()).then(setProducts); } }
-  return (<div><div className='card'><h3>Record Sale</h3><form onSubmit={record}><div className='form-row'><select className='input' value={form.productId} onChange={e=>setForm({...form,productId:e.target.value})}><option value=''>-- pick product --</option>{products.map(p=>(<option value={p.id} key={p.id}>{p.name} (Qty:{p.quantity})</option>))}</select><input type='number' className='input' value={form.qty} onChange={e=>setForm({...form,qty:Number(e.target.value)})}/><input className='input' placeholder='Customer ID (optional)' value={form.customerId} onChange={e=>setForm({...form,customerId:e.target.value})}/></div><div style={{marginTop:8}}><button className='button' type='submit'>Sell</button></div></form></div><div style={{marginTop:12}} className='card table'><h3>Sales History</h3><table><thead><tr><th>Product</th><th>Qty</th><th>Revenue</th><th>Date</th></tr></thead><tbody>{sales.map(s=>(<tr key={s.id}><td>{s.productId}</td><td>{s.qty}</td><td>{'M'+Number(s.revenue).toFixed(2)}</td><td>{new Date(s.date).toLocaleString()}</td></tr>))}</tbody></table></div></div>); }
+import React, { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
+
+export default function Sales() {
+  const [products, setProducts] = useState([]);
+  const [sales, setSales] = useState([]);
+  const [form, setForm] = useState({ productId: '', qty: 1, customerId: '' });
+
+  useEffect(() => {
+    fetch('/api/products')
+      .then(r => r.json())
+      .then(setProducts);
+    fetch('/api/sales')
+      .then(r => r.json())
+      .then(setSales);
+  }, []);
+
+  async function record(e) {
+    e.preventDefault();
+    const res = await fetch('/api/sales', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form)
+    });
+    const data = await res.json();
+    if (data.error) {
+      Swal.fire('Error', data.error, 'error');
+    } else {
+      Swal.fire('Recorded', 'Sale saved', 'success');
+      fetch('/api/sales')
+        .then(r => r.json())
+        .then(setSales);
+      fetch('/api/products')
+        .then(r => r.json())
+        .then(setProducts);
+    }
+  }
+
+  return (
+    <div>
+      <div className='card'>
+        <h3>Record Sale</h3>
+        <form onSubmit={record}>
+          <div className='form-row'>
+            <select
+              className='input'
+              value={form.productId}
+              onChange={e => setForm({ ...form, productId: e.target.value })}
+            >
+              <option value=''>-- pick product --</option>
+              {products.map(p => (
+                <option value={p.id} key={p.id}>
+                  {p.name} (Qty: {p.quantity})
+                </option>
+              ))}
+            </select>
+            <input
+              type='number'
+              className='input'
+              value={form.qty}
+              onChange={e => setForm({ ...form, qty: Number(e.target.value) })}
+            />
+            <input
+              className='input'
+              placeholder='Customer ID (optional)'
+              value={form.customerId}
+              onChange={e => setForm({ ...form, customerId: e.target.value })}
+            />
+          </div>
+          <div style={{ marginTop: 8 }}>
+            <button className='button' type='submit'>
+              Sell
+            </button>
+          </div>
+        </form>
+      </div>
+      <div style={{ marginTop: 12 }} className='card table'>
+        <h3>Sales History</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Qty</th>
+              <th>Revenue</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sales.map(s => (
+              <tr key={s.id}>
+                <td>{s.productId}</td>
+                <td>{s.qty}</td>
+                <td>{'M' + Number(s.revenue).toFixed(2)}</td>
+                <td>{new Date(s.date).toLocaleString()}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
